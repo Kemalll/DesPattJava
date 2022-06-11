@@ -16,26 +16,34 @@ public class Santa {
 
     public void RunTheProgram(){
     
-
-        //While loop (update for  )
-
+        boolean isRunning=true;
         ToysFactory toysFactory = new ToysFactory();
-        Toys theToy=null;
-        Scanner userInput= new Scanner(System.in);
-        
-        System.out.println("What do you need?");  
-                 
-        if(userInput.hasNextLine()){
 
-            String requestedToy = userInput.nextLine();
-            theToy= toysFactory.getToys(requestedToy);
-            if(theToy!=null){
-                theToy.show();
-            }else   
-            System.err.println("Use (I need a doll) or (I need a bicycle) to recive the toy");
+        //While loop (update)
+        while(isRunning){
+            String requestedToy;
+            Scanner userInput= new Scanner(System.in);
 
+            Toys theToy=null;
+            System.out.println("What do you need?");  
 
-        }      
+            if(userInput.hasNextLine()){ 
+
+              requestedToy = userInput.nextLine();
+              theToy= toysFactory.getToys(requestedToy);
+                if(theToy!=null){
+                    theToy.show();
+                }
+                else if(requestedToy.equals("x")){
+                    userInput.close();
+                    System.out.println("You have closed the program"); break;
+                       
+                    }
+                    else{
+                    System.out.println("Use (I need a doll) or (I need a bicycle) to recive the toy or to exit type 'x'");
+                }
+            }   
+    
+        }
     }
-
 }
